@@ -1,20 +1,39 @@
-/* Configuración general */
+
+/* ========================================
+   1. CONFIGURACIÓN GENERAL
+======================================== */
+
 * {
   box-sizing: border-box;
 }
 
 :root {
   font-family: Arial, Helvetica, sans-serif;
-  color: #1f2937;
-  background: #f5f7fb;
+  color: #172033;
+  background: #f5f7ff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+
+  --primary: #4f46e5;
+  --primary-dark: #3730a3;
+  --secondary: #0891b2;
+  --green: #059669;
+  --orange: #ea580c;
+  --pink: #db2777;
+  --background: #f5f7ff;
+  --surface: #ffffff;
+  --text: #172033;
+  --muted: #64748b;
+  --border: #dbe3f0;
+  --danger: #b91c1c;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  min-height: 100vh;
   line-height: 1.5;
+  background: var(--background);
 }
 
 button,
@@ -22,17 +41,208 @@ input {
   font: inherit;
 }
 
-/* Contenedor principal */
+button {
+  cursor: pointer;
+}
+
 .container {
   width: min(1200px, 92%);
   margin-inline: auto;
 }
 
-/* Encabezado */
-.header {
-  background: #1e3a8a;
+/* ========================================
+   2. ACCESIBILIDAD
+======================================== */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 3px;
+}
+
+/* ========================================
+   3. LOGIN
+======================================== */
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 3rem;
+  padding: 4rem 8%;
+  background:
+    radial-gradient(circle at top left, #818cf8, transparent 45%),
+    linear-gradient(135deg, #312e81, #4f46e5, #0891b2);
+}
+
+.login-presentation {
   color: white;
+  max-width: 550px;
+}
+
+.presentation-tag {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgb(255 255 255 / 40%);
+  border-radius: 2rem;
+  background: rgb(255 255 255 / 12%);
+  font-size: 0.9rem;
+}
+
+.login-presentation h2 {
+  margin: 1.5rem 0;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+}
+
+.login-presentation p {
+  max-width: 480px;
+  color: #e0e7ff;
+  font-size: 1.1rem;
+}
+
+.presentation-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.presentation-features span {
+  padding: 0.6rem 1rem;
+  border-radius: 2rem;
+  background: rgb(255 255 255 / 15%);
+  color: white;
+  font-weight: 600;
+}
+
+/* ========================================
+   4. FORMULARIO DE LOGIN
+======================================== */
+
+.login-container {
+  width: 100%;
+  max-width: 460px;
+  justify-self: center;
+}
+
+.login-form {
+  width: 100%;
+  padding: 2.5rem;
+  background: var(--surface);
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 60px rgb(15 23 42 / 20%);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #eef2ff;
+  font-size: 2rem;
+}
+
+.form-header h1 {
+  margin: 1rem 0 0.5rem;
+  color: var(--text);
+  font-size: 1.8rem;
+}
+
+.form-header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.field {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1.3rem;
+}
+
+.field label {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.field input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  background: #f8fafc;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgb(79 70 229 / 12%);
+  outline: none;
+}
+
+.field input::placeholder {
+  color: #94a3b8;
+}
+
+.form-message {
+  padding: 0.8rem 1rem;
+  border-radius: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.form-message.error {
+  background: #fee2e2;
+  color: var(--danger);
+}
+
+/* ========================================
+   5. BOTONES
+======================================== */
+
+.btn {
+  border: 0;
+  border-radius: 0.7rem;
+  padding: 0.85rem 1.2rem;
+  font-weight: 700;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-primary {
+  width: 100%;
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ========================================
+   6. ENCABEZADO
+======================================== */
+
+.header {
+  position: relative;
+  z-index: 2;
   padding: 1rem 0;
+  background: linear-gradient(120deg, #3730a3, #4f46e5);
+  color: white;
+  box-shadow: 0 4px 15px rgb(15 23 42 / 12%);
 }
 
 .header .container {
@@ -43,38 +253,173 @@ input {
 }
 
 .header h1 {
-  font-size: clamp(1.25rem, 3vw, 1.8rem);
   margin: 0;
+  font-size: clamp(1.25rem, 3vw, 1.8rem);
 }
 
-/* Navegación */
-nav {
+.header nav {
   display: flex;
-  gap: 1rem;
+  align-items: center;
   flex-wrap: wrap;
+  gap: 0.7rem;
 }
 
-nav a {
+.header nav a {
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.6rem;
   color: white;
   text-decoration: none;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
+  transition: background 0.2s;
 }
 
-nav a.router-link-active {
+.header nav a:hover,
+.header nav a.router-link-active {
+  background: rgb(255 255 255 / 20%);
+}
+
+.user-name {
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem;
+}
+
+.btn-logout {
+  border: 0;
+  border-radius: 0.6rem;
+  padding: 0.65rem 1rem;
+  background: #db2777;
+  color: white;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+
+.btn-logout:hover {
+  background: #be185d;
+}
+
+/* ========================================
+   7. CONTENIDO PRINCIPAL
+======================================== */
+
+.app-content {
+  width: min(1200px, 92%);
+  margin-inline: auto;
+  padding-block: 2rem;
+  min-height: calc(100vh - 80px);
+}
+
+/* ========================================
+   8. DASHBOARD
+======================================== */
+
+.dashboard {
+  padding-block: 1rem;
+}
+
+.dashboard-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(120deg, #4f46e5, #0891b2);
+  color: white;
+  box-shadow: 0 10px 25px rgb(79 70 229 / 18%);
+}
+
+.dashboard-hero .badge {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border-radius: 2rem;
+  background: rgb(255 255 255 / 20%);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.dashboard-hero h1 {
+  margin: 1rem 0 0.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+}
+
+.dashboard-hero p {
+  max-width: 600px;
+  color: #e0f2fe;
+}
+
+.hero-icon {
+  font-size: 5rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.dashboard-card {
+  padding: 1.8rem;
+  border: 1px solid var(--border);
+  border-radius: 1.2rem;
   background: white;
-  color: #1e3a8a;
+  box-shadow: 0 5px 18px rgb(15 23 42 / 6%);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Accesibilidad */
-nav a:focus-visible,
-button:focus-visible,
-input:focus-visible {
-  outline: 3px solid #f59e0b;
-  outline-offset: 3px;
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgb(15 23 42 / 10%);
 }
 
-/* Encabezado de secciones */
+.card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  border-radius: 1rem;
+  background: #eef2ff;
+  font-size: 1.8rem;
+}
+
+.dashboard-card h2 {
+  margin: 1rem 0 0.5rem;
+}
+
+.dashboard-card p {
+  color: var(--muted);
+}
+
+.card-blue {
+  border-top: 5px solid var(--primary);
+}
+
+.card-green {
+  border-top: 5px solid var(--green);
+}
+
+.card-orange {
+  border-top: 5px solid var(--orange);
+}
+
+.card-link {
+  display: inline-block;
+  margin-top: 0.8rem;
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* ========================================
+   9. SERVICIOS
+======================================== */
+
 .section-header {
   display: flex;
   justify-content: space-between;
@@ -89,7 +434,6 @@ input:focus-visible {
   min-width: min(280px, 100%);
 }
 
-/* Buscador */
 input[type="search"] {
   width: 100%;
   padding: 0.7rem;
@@ -97,7 +441,6 @@ input[type="search"] {
   border-radius: 0.5rem;
 }
 
-/* Tarjetas de servicios */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(
@@ -109,10 +452,10 @@ input[type="search"] {
 }
 
 .service-card {
-  background: white;
-  border: 1px solid #dbe2ea;
-  border-radius: 0.75rem;
   padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: white;
   box-shadow: 0 4px 12px rgb(15 23 42 / 6%);
 }
 
@@ -121,29 +464,33 @@ input[type="search"] {
 }
 
 .price {
+  color: var(--primary);
   font-weight: 700;
-  color: #1e3a8a;
 }
 
-/* Botones */
 .service-card button,
-.button {
-  cursor: pointer;
+.button,
+.service-details button {
   display: inline-block;
   padding: 0.7rem 1rem;
   border: 0;
   border-radius: 0.5rem;
-  background: #1e3a8a;
+  background: var(--primary);
   color: white;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .service-card button:hover,
-.service-details button:hover {
-  background: #172554;
+.service-details button:hover,
+.button:hover {
+  background: var(--primary-dark);
 }
 
-/* Inicio */
+/* ========================================
+   10. INICIO Y DETALLES
+======================================== */
+
 .home {
   padding: 2rem 0;
 }
@@ -156,43 +503,87 @@ input[type="search"] {
   margin-bottom: 1rem;
 }
 
-/* Detalles del servicio seleccionado */
 .service-details {
   margin-block: 2rem;
   padding: 1.5rem;
-  background: white;
-  border: 2px solid #1e3a8a;
+  border: 2px solid var(--primary);
   border-radius: 0.75rem;
+  background: white;
   box-shadow: 0 4px 12px rgb(15 23 42 / 6%);
 }
 
 .service-details h3 {
-  color: #1e3a8a;
   margin-top: 0;
+  color: var(--primary);
 }
 
 .service-details p {
   margin-bottom: 0.75rem;
 }
 
-.service-details button {
-  cursor: pointer;
-  padding: 0.7rem 1rem;
-  border: 0;
-  border-radius: 0.5rem;
-  background: #1e3a8a;
-  color: white;
+/* ========================================
+   11. DISEÑO RESPONSIVE
+======================================== */
+
+@media (max-width: 900px) {
+  .login-page {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 2rem;
+    padding: 3rem 6%;
+  }
+
+  .login-presentation {
+    text-align: center;
+  }
+
+  .presentation-features {
+    justify-content: center;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-/* Diseño para celulares */
-@media (max-width: 700px) {
-  .header .container,
-  .section-header {
+@media (max-width: 650px) {
+  .header .container {
     flex-direction: column;
     align-items: stretch;
   }
 
-  nav {
-    gap: 0.5rem;
+  .header nav {
+    justify-content: center;
+  }
+
+  .login-page {
+    padding: 2rem 5%;
+  }
+
+  .login-form {
+    padding: 1.5rem;
+  }
+
+  .login-presentation h2 {
+    font-size: 2.3rem;
+  }
+
+  .dashboard-hero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+
+  .hero-icon {
+    font-size: 3rem;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
