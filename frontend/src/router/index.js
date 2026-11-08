@@ -6,6 +6,9 @@ import {
 import LoginView from '../views/LoginView.vue'
 import DashboardView from '../views/DashboardView.vue'
 import ServicesView from '../views/ServicesView.vue'
+import UsersView from '../views/admin/UsersView.vue'
+import AdminServicesView from '../views/admin/ServicesView.vue'
+
 import { useAuth } from '../services/auth'
 
 const routes = [
@@ -36,6 +39,24 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/admin/usuarios',
+    name: 'admin-usuarios',
+    component: UsersView,
+    meta: {
+      requiresAuth: true,
+      roles: ['ADMIN_SISTEMA']
+    }
+  },
+  {
+    path: '/admin/servicios',
+    name: 'admin-servicios',
+    component: AdminServicesView,
+    meta: {
+      requiresAuth: true,
+      roles: ['ADMIN_SISTEMA', 'ADMIN_SERVICIOS']
+    }
   }
 ]
 
@@ -48,7 +69,8 @@ router.beforeEach(async (to) => {
   const {
     initialized,
     authenticated,
-    checkSession
+    checkSession,
+    user
   } = useAuth()
 
   if (!initialized.value) {
@@ -69,8 +91,19 @@ router.beforeEach(async (to) => {
       name: 'dashboard'
     }
   }
+
+  if (to.meta.roles) {
+    const userRole = user.value?.rol
+
+    if (!to.meta.roles.includes(userRole)) {
+      return {
+        name: 'dashboard'
+      }
+    }
+  }
 })
 
 export default router
+
 
 
